@@ -1,40 +1,84 @@
-# [NAME] Terraform Module
+# terraform-spotinst-ocean-gcp-k8s
+Terraform module for Spotinst provider resource spotinst_ocean_gke_import
 
-Short description of the module.
+## Prerequisites
 
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Usage](#usage)
-- [Examples](#examples)
-- [Requirements](#requirements)
-- [Providers](#providers)
-- [Modules](#modules)
-- [Resources](#resources)
-- [Inputs](#inputs)
-- [Outputs](#outputs)
-- [Documentation](#documentation)
-- [Getting Help](#getting-help)
-- [Community](#community)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Usage
+Installation of the Ocean controller is required by this resource. You can accomplish this by using the [spotinst/ocean-controller](https://registry.terraform.io/modules/spotinst/ocean-controller/spotinst) module. The kubernetes provider will need to be initilaized before calling the ocean-controller module as follows:
 
 ```hcl
-module "[NAME]" {
-  source = "spotinst/[NAME]/spotinst"
-
+module "ocean-gcp-k8s" {
+  source  = "spotinst/ocean-gcp-k8s"
   ...
+}
+
+## Option 1 to initialize kubernetes provider ##
+# Data Resources for kubernetes provider
+#initialize the kubernetes provider with access to the specific cluster
+provider "kubernetes" {
+  host  = "https://${data.google_container_cluster.gke.endpoint}"
+  token = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(data.google_container_cluster.gke.master_auth[0].cluster_ca_certificate)
+}
+
+### data resources ###
+data "google_client_config" "default" {}
+
+#Retrieve cluster info to get instance group URLS
+data "google_container_cluster" "gke" {
+  name     = var.cluster_name
+  location = var.location
+}
+##################
+
+## Option 2 to initialize kubernetes provider ##
+provider "kubernetes" {
+  config_path = "~/.kube/config"
+}
+##################
+
+module "ocean-controller" {
+  source = "spotinst/ocean-controller/spotinst"
+
+  # Credentials.
+  spotinst_account    = var.spotinst_account
+  spotinst_token      = module.ocean-gcp-k8s.programmatic_user_token
+
+  # Configuration.
+  cluster_identifier  = module.ocean-gcp-k8s.ocean_cluster_id
 }
 ```
 
-## Examples
+~> You must configure the same `cluster_identifier` both for the Ocean controller and for the `spotinst_ocean_gke_import` resource.
 
-- [Basic](examples/basic)
+## Usage
+```hcl
+module "ocean-gcp-k8s" {
+  source = "spotinst/ocean-gcp-k8s/spotinst"
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+  # Credentials.
+  spotinst_token                    = var.spot_token
+  spotinst_account                  = var.spot_account
+  enable_programmatic_user_creation = true
+
+  cluster_name                      = var.cluster_name
+  location                          = var.location
+  
+}
+```
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| spotinst/spotinst | >= 1.39.0 |
+| hashicorp/gcp |  |
+| mastercard/restapi |  |
+
+## Modules
+* `ocean-gcp-k8s` - Creates Ocean Cluster 
+* `ocean-gcp-k8s-vng` - (Optional) Add custom virtual node groups with custom configs [Doc](https://registry.terraform.io/modules/spotinst/ocean-gcp-k8s-vng/spotinst/latest)
+* `ocean-controller` - Create and installs Spot Ocean controller pod [Doc](https://registry.terraform.io/modules/spotinst/ocean-controller/spotinst/latest)
+
 
 ## Documentation
 
@@ -55,8 +99,4 @@ We use GitHub issues for tracking bugs and feature requests. Please use these co
 
 ## Contributing
 
-Please see the [contribution guidelines](.github/CONTRIBUTING.md).
-
-## License
-
-Code is licensed under the [Apache License 2.0](LICENSE).
+Please see the [contribution guidelines](CONTRIBUTING.md).
