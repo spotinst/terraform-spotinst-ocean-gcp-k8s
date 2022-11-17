@@ -92,7 +92,7 @@ resource "restapi_object" "programmatic_user" {
   id_attribute = "response/items/0/id"
   data         = <<-EOT
                   {
-                    "name": "test123123",
+                    "name": ${var.cluster_name},
                     "description": "Programmatic User for ${var.cluster_name}",
                     "accounts": [
                       {
