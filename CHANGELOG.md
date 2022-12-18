@@ -2,7 +2,7 @@
 ## [Unreleased]
 
 <a name="v0.1.1"></a>
-## v0.1.0 (November 17, 2022)
+## v0.1.1 (November 17, 2022)
 
 - Update programmatic user name to a variable
 
