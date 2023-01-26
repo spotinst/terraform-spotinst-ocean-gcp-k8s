@@ -80,19 +80,25 @@ resource "spotinst_ocean_gke_import" "ocean" {
 
 }
 
+# Create a random string
+resource "random_id" "random_string" {
+  byte_length = 8
+}
+locals {
+  programmatic_name = format("%s/%s",var.cluster_name,random_id.random_string.id)
+}
 
 resource "restapi_object" "programmatic_user" {
   count = var.enable_programmatic_user_creation == true ? 1 : 0
-  provider = restapi.restapi_programmatic
   path         = "/setup/user/programmatic"
   create_path  = "/setup/user/programmatic"
   destroy_path = "/setup/user/{id}"
   update_path  = "/setup/user/programmatic/{id}"
   read_path    = "/setup/user/programmatic/{id}"
   id_attribute = "response/items/0/id"
-  data         = <<-EOT
+  data         = jsonencode(
                   {
-                    "name": "${var.cluster_name}",
+                    "name": "${local.programmatic_name}",
                     "description": "Programmatic User for ${var.cluster_name}",
                     "accounts": [
                       {
@@ -101,7 +107,7 @@ resource "restapi_object" "programmatic_user" {
                       }
                     ]
                   }
-                  EOT
+                  )
 }
 
 

@@ -1,9 +1,4 @@
 ### Variables ###
-variable "spotinst_token" {
-  type        = string
-  description = "Token for creation of Programmatic User"
-  sensitive   = true
-}
 variable "spotinst_account" {
   type        = string
   description = "Account ID for the Programmatic User"

@@ -11,7 +11,6 @@ module "ocean-gcp-k8s" {
   ...
 }
 
-## Option 1 to initialize kubernetes provider ##
 # Data Resources for kubernetes provider
 #initialize the kubernetes provider with access to the specific cluster
 provider "kubernetes" {
@@ -27,12 +26,6 @@ data "google_client_config" "default" {}
 data "google_container_cluster" "gke" {
   name     = var.cluster_name
   location = var.location
-}
-##################
-
-## Option 2 to initialize kubernetes provider ##
-provider "kubernetes" {
-  config_path = "~/.kube/config"
 }
 ##################
 
@@ -52,11 +45,22 @@ module "ocean-controller" {
 
 ## Usage
 ```hcl
+## Required provider for the programmatic user creation
+provider "restapi" {
+  uri                  = "https://api.spotinst.io"
+  write_returns_object = true
+  debug                = true
+
+  headers = {
+    "Authorization": "Bearer ${var.spotinst_token}"
+    "Content-Type" = "application/json"
+  }
+}
+
 module "ocean-gcp-k8s" {
   source = "spotinst/ocean-gcp-k8s/spotinst"
 
   # Credentials.
-  spotinst_token                    = var.spot_token
   spotinst_account                  = var.spot_account
   enable_programmatic_user_creation = true
 
