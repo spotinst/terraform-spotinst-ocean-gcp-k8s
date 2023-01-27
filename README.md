@@ -7,7 +7,7 @@ Installation of the Ocean controller is required by this resource. You can accom
 
 ```hcl
 module "ocean-gcp-k8s" {
-  source  = "spotinst/ocean-gcp-k8s"
+  source = "spotinst/ocean-gcp-k8s/spotinst"
   ...
 }
 
@@ -43,48 +43,18 @@ module "ocean-controller" {
 ```
 ~> You must configure the same `cluster_identifier` both for the Ocean controller and for the `spotinst_ocean_gke_import` resource.
 
+> **_NOTE:_**  If you would like to create a programmatic user and token for use with the Ocean controller pod review this [example.](/examples/basic_with_programmatic_user)
+
 ## Usage
+
 ```hcl
-## (Optional) Add provider for the programmatic user creation
-provider "restapi" {
-  uri                  = "https://api.spotinst.io"
-  write_returns_object = true
-
-  headers = {
-    "Authorization": "Bearer ${var.spotinst_token}"
-    "Content-Type" = "application/json"
-  }
-}
-# (Optional) Create the programmatic user within Spot and return the token
-resource "restapi_object" "programmatic_user" {
-  path         = "/setup/user/programmatic"
-  create_path  = "/setup/user/programmatic"
-  destroy_path = "/setup/user/{id}"
-  update_path  = "/setup/user/programmatic/{id}"
-  read_path    = "/setup/user/programmatic/{id}"
-  id_attribute = "response/items/0/id"
-  data         = jsonencode(
-    {
-      "name": "${var.cluster_name}",
-      "description": "Programmatic User for ${var.cluster_name}",
-      "accounts": [
-        {
-          "id": "${var.spotinst_account}",
-          "role": "viewer"
-        }
-      ]
-    }
-  )
-}
-
-#Create Ocean
+#Create Ocean cluster - Import existing GKE cluster
 module "ocean-gcp-k8s" {
   source = "spotinst/ocean-gcp-k8s/spotinst"
 
   # Credentials.
   cluster_name                      = var.cluster_name
   location                          = var.location
-  
 }
 ```
 
