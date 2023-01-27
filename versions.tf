@@ -6,8 +6,5 @@ terraform {
       source  = "spotinst/spotinst"
       version = ">= 1.96.0"
     }
-    restapi = {
-      source = "mastercard/restapi"
-    }
   }
 }

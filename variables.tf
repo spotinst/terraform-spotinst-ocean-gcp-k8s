@@ -1,14 +1,4 @@
 ### Variables ###
-variable "spotinst_account" {
-  type        = string
-  description = "Account ID for the Programmatic User"
-  sensitive   = true
-}
-variable "enable_programmatic_user_creation" {
-  type        = bool
-  default     = false
-  description = "Create a programmatic user and output the token for the controller"
-}
 variable "cluster_name" {
   type        = string
   description = "(Required) The GKE cluster name."
@@ -57,13 +47,13 @@ variable "root_volume_type" {
 ## backend_service ##
 variable "backend_service" {
   type = object({
-    service_name = string
+    service_name  = string
     location_type = string
-    scheme = string
-    port_name = string
-    ports = list(number)
+    scheme        = string
+    port_name     = string
+    ports         = list(number)
   })
-  default = null
+  default     = null
   description = "Configures the backend service configurations"
 }
 
@@ -71,13 +61,13 @@ variable "backend_service" {
 
 ## shielded_instance_config ##
 variable "enable_integrity_monitoring" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Enable the integrity monitoring parameter on the GCP instances."
 }
 variable "enable_secure_boot" {
-  type = bool
-  default = false
+  type        = bool
+  default     = false
   description = "Enable the secure boot parameter on the GCP instances."
 }
 #################

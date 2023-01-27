@@ -34,36 +34,54 @@ module "ocean-controller" {
 
   # Credentials.
   spotinst_account    = var.spotinst_account
-  spotinst_token      = module.ocean-gcp-k8s.programmatic_user_token
+  spotinst_token      = var.spotinst_token
 
   # Configuration.
-  cluster_identifier  = module.ocean-gcp-k8s.ocean_cluster_id
+  cluster_identifier  = module.ocean-gcp-k8s.ocean_controller_id
+  tolerations = []
 }
 ```
-
 ~> You must configure the same `cluster_identifier` both for the Ocean controller and for the `spotinst_ocean_gke_import` resource.
 
 ## Usage
 ```hcl
-## Required provider for the programmatic user creation
+## (Optional) Add provider for the programmatic user creation
 provider "restapi" {
   uri                  = "https://api.spotinst.io"
   write_returns_object = true
-  debug                = true
 
   headers = {
     "Authorization": "Bearer ${var.spotinst_token}"
     "Content-Type" = "application/json"
   }
 }
+# (Optional) Create the programmatic user within Spot and return the token
+resource "restapi_object" "programmatic_user" {
+  path         = "/setup/user/programmatic"
+  create_path  = "/setup/user/programmatic"
+  destroy_path = "/setup/user/{id}"
+  update_path  = "/setup/user/programmatic/{id}"
+  read_path    = "/setup/user/programmatic/{id}"
+  id_attribute = "response/items/0/id"
+  data         = jsonencode(
+    {
+      "name": "${var.cluster_name}",
+      "description": "Programmatic User for ${var.cluster_name}",
+      "accounts": [
+        {
+          "id": "${var.spotinst_account}",
+          "role": "viewer"
+        }
+      ]
+    }
+  )
+}
 
+#Create Ocean
 module "ocean-gcp-k8s" {
   source = "spotinst/ocean-gcp-k8s/spotinst"
 
   # Credentials.
-  spotinst_account                  = var.spot_account
-  enable_programmatic_user_creation = true
-
   cluster_name                      = var.cluster_name
   location                          = var.location
   
@@ -72,11 +90,10 @@ module "ocean-gcp-k8s" {
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| spotinst/spotinst | >= 1.39.0 |
-| hashicorp/gcp |  |
-| mastercard/restapi |  |
+| Name | Version   |
+|------|-----------|
+| spotinst/spotinst | >= 1.96.0 |
+| hashicorp/gcp |           |
 
 ## Modules
 * `ocean-gcp-k8s` - Creates Ocean Cluster 
