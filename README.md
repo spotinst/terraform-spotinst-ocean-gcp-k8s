@@ -7,11 +7,10 @@ Installation of the Ocean controller is required by this resource. You can accom
 
 ```hcl
 module "ocean-gcp-k8s" {
-  source  = "spotinst/ocean-gcp-k8s"
+  source = "spotinst/ocean-gcp-k8s/spotinst"
   ...
 }
 
-## Option 1 to initialize kubernetes provider ##
 # Data Resources for kubernetes provider
 #initialize the kubernetes provider with access to the specific cluster
 provider "kubernetes" {
@@ -30,49 +29,41 @@ data "google_container_cluster" "gke" {
 }
 ##################
 
-## Option 2 to initialize kubernetes provider ##
-provider "kubernetes" {
-  config_path = "~/.kube/config"
-}
-##################
-
 module "ocean-controller" {
   source = "spotinst/ocean-controller/spotinst"
 
   # Credentials.
   spotinst_account    = var.spotinst_account
-  spotinst_token      = module.ocean-gcp-k8s.programmatic_user_token
+  spotinst_token      = var.spotinst_token
 
   # Configuration.
-  cluster_identifier  = module.ocean-gcp-k8s.ocean_cluster_id
+  cluster_identifier  = module.ocean-gcp-k8s.ocean_controller_id
+  tolerations = []
 }
 ```
-
 ~> You must configure the same `cluster_identifier` both for the Ocean controller and for the `spotinst_ocean_gke_import` resource.
 
+> **_NOTE:_**  If you would like to create a programmatic user and token for use with the Ocean controller pod review this [example.](/examples/basic_with_programmatic_user)
+
 ## Usage
+
 ```hcl
+#Create Ocean cluster - Import existing GKE cluster
 module "ocean-gcp-k8s" {
   source = "spotinst/ocean-gcp-k8s/spotinst"
 
   # Credentials.
-  spotinst_token                    = var.spot_token
-  spotinst_account                  = var.spot_account
-  enable_programmatic_user_creation = true
-
   cluster_name                      = var.cluster_name
   location                          = var.location
-  
 }
 ```
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| spotinst/spotinst | >= 1.39.0 |
-| hashicorp/gcp |  |
-| mastercard/restapi |  |
+| Name | Version   |
+|------|-----------|
+| spotinst/spotinst | >= 1.96.0 |
+| hashicorp/gcp |           |
 
 ## Modules
 * `ocean-gcp-k8s` - Creates Ocean Cluster 
