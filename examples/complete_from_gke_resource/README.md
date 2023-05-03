@@ -15,6 +15,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
+| <a name="module_gke"></a> [gke](#module\_gke) | terraform-gcp-modules/gke/gcp | ~> 19.0 |
 | <a name="module_ocean-gcp-k8s"></a> [ocean-gcp-k8s](#module\_ocean-gcp-k8s) | spotinst/ocean-gcp-k8s/spotinst | n/a |
 | <a name="module_ocean-controller"></a> [ocean-controller](#module\_ocean-controller) | spotinst/ocean-controller/spotinst | n/a |
 
