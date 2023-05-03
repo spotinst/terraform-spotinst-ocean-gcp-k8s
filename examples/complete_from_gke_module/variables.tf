@@ -24,11 +24,7 @@ variable "region" {
   default = "us-east1"
   description = "(Required) GCP Region for provisioning resources."
 }
-variable "zone" {
-  type = string
-  default = ""
-  description = "(Required) GCP Zone for provisioning zonal resources."
-}
+
 variable "project_id" {
   type = string
   default = ""

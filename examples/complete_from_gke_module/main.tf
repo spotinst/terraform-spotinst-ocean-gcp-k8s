@@ -3,7 +3,7 @@ resource "google_container_cluster" "primary" {
   name     = var.cluster_name
   location = var.region
   project  = var.project_id
-  remove_default_node_pool = false
+  remove_default_node_pool = true
   initial_node_count       = 1
   network    = google_compute_network.vpc.name
   subnetwork = google_compute_subnetwork.subnet.name
@@ -11,9 +11,8 @@ resource "google_container_cluster" "primary" {
 
 # Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
-  name       = "${google_container_cluster.primary.name}-node-pool"
+  name       = google_container_cluster.primary.name
   location   = var.region
-  node_locations = [var.zone]
   cluster    = google_container_cluster.primary.name
   node_count = 1
   project    = var.project_id
@@ -29,15 +28,13 @@ resource "google_container_node_pool" "primary_nodes" {
     }
 
     preemptible  = true
-    machine_type = "e2-small"
+    machine_type = "n1-standard-1"
     tags         = ["gke-node", "${var.project_id}-gke"]
     metadata = {
       disable-legacy-endpoints = "true"
     }
   }
-  depends_on = [google_container_cluster.primary]
 }
-
 
 ### Spot Ocean 
 module "ocean-gcp-k8s" {
@@ -47,7 +44,7 @@ module "ocean-gcp-k8s" {
   location                          = var.region
   use_as_template_only              = true
   
-  depends_on = [google_container_node_pool.primary_nodes]
+  depends_on = [google_container_cluster.primary,google_container_node_pool.primary_nodes]
 }
 
 ### Deploy Ocean Controller Pod into Cluster ###
@@ -61,12 +58,13 @@ module "ocean-controller" {
 
   # Configuration.
   cluster_identifier = module.ocean-gcp-k8s.ocean_controller_id
+  tolerations = []
 }
 
 module "ocean-gcp-k8s-vng" {
     source = "spotinst/ocean-gcp-k8s-vng/spotinst"
     ocean_id            = module.ocean-gcp-k8s.ocean_id
-    node_pool_name      = "default-pool"
+    node_pool_name      = var.cluster_name
     min_instance_count  = 1
     root_volume_type = "pd-ssd"
     depends_on = [google_compute_subnetwork.subnet]
