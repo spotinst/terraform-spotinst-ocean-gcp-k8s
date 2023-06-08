@@ -2,11 +2,13 @@
 provider "spotinst" {
   account = var.spotinst_account
   token   = var.spotinst_token
+  version = "~> 1.117.0"  
 }
 
 provider "google" {
   project     = var.project_id
   region      = var.region
+  credentials = file("sales-labs-5513b8063937.json")
 }
 
 provider "kubernetes" {
