@@ -1,6 +1,6 @@
 ### Spot Ocean cluster creation ###
 module "ocean-gcp-k8s" {
-  source = "../../"
+  source     = "spotinst/ocean-gcp-k8s/spotinst"
 
   cluster_name                      = var.cluster_name
   location                          = var.region
@@ -39,8 +39,8 @@ module "ocean-gcp-k8s-vng" {
     ocean_id            = module.ocean-gcp-k8s.ocean_id
     name                = each.key
     min_instance_count  = 1
-    root_volume_type    = "pd-standard"
     tags = {tag-added-after-import = ""}
+    root_volume_type = "pd-standard"
 
     depends_on = [module.ocean-gcp-k8s,google_container_node_pool.node-pool-for-import-1,google_container_node_pool.node-pool-for-import-2]
 }

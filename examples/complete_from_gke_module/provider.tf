@@ -1,14 +1,25 @@
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
+    spotinst = {
+      source  = "spotinst/spotinst"
+      version = "~> 1.117.0" 
+    }
+  }
+}
 
 provider "spotinst" {
   account = var.spotinst_account
   token   = var.spotinst_token
-  version = "~> 1.117.0"  
 }
 
 provider "google" {
   project     = var.project_id
   region      = var.region
-  credentials = file("sales-labs-5513b8063937.json")
+  credentials = file("your_gcp_service_account_key.json")
 }
 
 provider "kubernetes" {

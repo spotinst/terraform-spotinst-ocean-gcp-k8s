@@ -89,7 +89,3 @@ resource "google_container_node_pool" "shutdown_node" {
     }
   }
 }
-
-
-
-
