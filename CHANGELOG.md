@@ -3,13 +3,32 @@
 
 
 
+<a name="v0.2.2"></a>
+## [v0.2.2] (July 7, 2023)
+
+- Ocean-GCP-Module-Examples & inclusion of use_as_template_only  ([#5](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/5))
+- [src] removed common workflow
+- [src] added common workflow
+
+
+<a name="v0.2.1"></a>
+## [v0.2.1] (February 10, 2023)
+
+- Changelog v0.2.0 ([#4](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/4))
+
+
 <a name="v0.2.0"></a>
 ## [v0.2.0] (February 10, 2023)
 
-- Update README
+- fix - Updated Example files
+- Correcting Repository Name
+- Update readme
 - Remove restapi resource from module and update examples for use
+- Merge branch 'main' into v0.2.0
 - Remove restapi provider from the module to allow depends_on and count
+- update CHANGELOG.md
 - update name for programmatic user
+- Update Changelog
 - Update programmatic user name to a variable
 
 
@@ -29,6 +48,8 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.2...HEAD
+[v0.2.2]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.1...v0.2.2
+[v0.2.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.1...v0.2.0
 [v0.1.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.0...v0.1.1
