@@ -76,7 +76,6 @@ variable "use_as_template_only" {
   default     = false
   description = "(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups."
 }
-
 ## shutdown_hours ##
 variable "shutdown_hours" {
   type = object({
@@ -86,7 +85,6 @@ variable "shutdown_hours" {
   default     = null
   description = "shutdown_hours object"
 }
-
 ## Auto Scaler ##
 variable "autoscale_is_enabled" {
   type        = bool
