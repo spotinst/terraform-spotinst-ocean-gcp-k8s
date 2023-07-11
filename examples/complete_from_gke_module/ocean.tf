@@ -1,7 +1,6 @@
 ### Spot Ocean cluster creation ###
 module "ocean-gcp-k8s" {
-  ##source     = "spotinst/ocean-gcp-k8s/spotinst"
-  source     = "../../"
+  source     = "spotinst/ocean-gcp-k8s/spotinst"
 
   cluster_name                      = var.cluster_name
   location                          = var.region
