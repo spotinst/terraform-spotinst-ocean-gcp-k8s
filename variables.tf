@@ -72,6 +72,16 @@ variable "enable_secure_boot" {
 }
 #################
 
+## shutdown_hours ##
+variable "shutdown_hours" {
+  type = object({
+    is_enabled   = bool
+    time_windows = list(string)
+  })
+  default     = null
+  description = "shutdown_hours object"
+}
+
 ## Auto Scaler ##
 variable "autoscale_is_enabled" {
   type        = bool
