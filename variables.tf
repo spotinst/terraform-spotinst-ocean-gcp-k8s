@@ -71,6 +71,11 @@ variable "enable_secure_boot" {
   description = "Enable the secure boot parameter on the GCP instances."
 }
 #################
+variable "use_as_template_only" {
+  type        = bool
+  default     = false
+  description = "(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups."
+}
 
 ## shutdown_hours ##
 variable "shutdown_hours" {

@@ -27,6 +27,8 @@ resource "spotinst_ocean_gke_import" "ocean" {
     enable_secure_boot          = var.enable_secure_boot
   }
 
+  use_as_template_only = var.use_as_template_only
+
   autoscaler {
     is_enabled                           = var.autoscale_is_enabled
     is_auto_config                       = var.autoscale_is_auto_config
