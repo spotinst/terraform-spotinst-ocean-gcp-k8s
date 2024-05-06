@@ -205,6 +205,12 @@ variable "tasks" {
     is_enabled      = bool
     cron_expression = string
     task_type       = string
+    cluster_roll = optional(set(object({
+      batch_min_healthy_percentage = optional(number,null)
+      batch_size_percentage = optional(number,null)
+      comment = optional(string,null)
+      respect_pdb = optional(bool,null)
+    })), [])
   }))
   default     = null
   description = "task object"
