@@ -5,6 +5,29 @@ module "ocean-gcp-k8s" {
   cluster_name                      = var.cluster_name
   location                          = var.region
   use_as_template_only              = true
+  shutdown_hours = {
+    is_enabled = true
+    time_windows = [ # Must be in GMT
+      "Fri:23:30-Mon:13:30", # Weekends
+      "Mon:23:30-Tue:13:30", # Weekday evenings
+      "Tue:23:30-Wed:13:30",
+      "Wed:23:30-Thu:13:30",
+      "Thu:23:30-Fri:13:30",
+    ]
+  }
+  tasks = [
+    {
+      is_enabled = true
+      cron_expression =  "0 1 * * *"
+      task_type = "clusterRoll"
+      cluster_roll = [{
+        batch_min_healthy_percentage = 100
+        batch_size_percentage = 20
+        comment =  "This is why I deployed my cluster."
+        respect_pdb = true
+      }]
+    }
+  ]
   
   depends_on = [google_container_cluster.primary]
 }

@@ -74,6 +74,34 @@ resource "spotinst_ocean_gke_import" "ocean" {
     }
   }
 
+  scheduled_task {
+    dynamic "shutdown_hours" {
+      for_each = var.shutdown_hours != null ? [var.shutdown_hours] : []
+      content {
+        is_enabled   = shutdown_hours.value.is_enabled
+        time_windows = shutdown_hours.value.time_windows
+      }
+    }
+    dynamic "tasks" {
+      for_each = var.tasks != null ? var.tasks : []
+      content {
+        is_enabled      = tasks.value.is_enabled
+        cron_expression = tasks.value.cron_expression
+        task_type       = tasks.value.task_type
+        task_parameters {
+          dynamic "cluster_roll" {
+            for_each = tasks.value.cluster_roll
+            content {
+              batch_min_healthy_percentage = cluster_roll.value.batch_min_healthy_percentage
+              batch_size_percentage        = cluster_roll.value.batch_size_percentage
+              comment                      = cluster_roll.value.comment
+              respect_pdb                  = cluster_roll.value.respect_pdb
+            }
+          }
+        }
+      }
+    }
+  }
   lifecycle {
     ignore_changes = [
       desired_capacity

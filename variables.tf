@@ -76,7 +76,7 @@ variable "use_as_template_only" {
   default     = false
   description = "(Optional, Default: false) launch specification defined on the Ocean object will function only as a template for virtual node groups."
 }
-
+###################
 ## Auto Scaler ##
 variable "autoscale_is_enabled" {
   type        = bool
@@ -189,3 +189,29 @@ variable "batch_min_healthy_percentage" {
   description = "Indicates the threshold of minimum healthy instances in single batch. If the amount of healthy instances in single batch is under the threshold, the cluster roll will fail. If exists, the parameter value will be in range of 1-100. In case of null as value, the default value in the backend will be 50%. Value of param should represent the number in percentage (%) of the batch."
 }
 ##########################
+
+## shutdown_hours ##
+variable "shutdown_hours" {
+  type = object({
+    is_enabled   = bool
+    time_windows = list(string)
+  })
+  default     = null
+  description = "shutdown_hours object"
+}
+# task scheduling #
+variable "tasks" {
+  type = list(object({
+    is_enabled      = bool
+    cron_expression = string
+    task_type       = string
+    cluster_roll = optional(set(object({
+      batch_min_healthy_percentage = optional(number,null)
+      batch_size_percentage = optional(number,null)
+      comment = optional(string,null)
+      respect_pdb = optional(bool,null)
+    })), [])
+  }))
+  default     = null
+  description = "task object"
+}
