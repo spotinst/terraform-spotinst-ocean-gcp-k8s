@@ -3,9 +3,17 @@
 
 
 
+<a name="v0.3.0"></a>
+## [v0.3.0] (May 10, 2024)
+
+- added support for task_parameters under tasks block ([#9](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/9))
+- added shutdown_hours and tasks to the module ([#7](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/7))
+
+
 <a name="v0.2.2"></a>
 ## [v0.2.2] (July 7, 2023)
 
+- Changelog V0.2.2 ([#6](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/6))
 - Ocean-GCP-Module-Examples & inclusion of use_as_template_only  ([#5](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/5))
 - [src] removed common workflow
 - [src] added common workflow
@@ -48,7 +56,8 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.2...v0.3.0
 [v0.2.2]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.1...v0.2.0
