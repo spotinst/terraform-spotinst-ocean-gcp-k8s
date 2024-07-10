@@ -21,7 +21,7 @@ resource "restapi_object" "programmatic_user" {
       "accounts" : [
         {
           "id" : "${var.spotinst_account}",
-          "role" : "viewer"
+          "role" : "editor"
         }
       ]
     }
