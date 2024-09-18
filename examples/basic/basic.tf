@@ -12,8 +12,9 @@ module "ocean-controller" {
   depends_on = [module.ocean-gcp-k8s]
 
   # Credentials.
-  spotinst_account = var.spotinst_account
-  spotinst_token   = var.spotinst_token
+  spotinst_account           = var.spotinst_account
+  spotinst_token             = var.spotinst_token
+  should_utilize_commitments = true
 
   # Configuration.
   cluster_identifier = module.ocean-gcp-k8s.ocean_controller_id

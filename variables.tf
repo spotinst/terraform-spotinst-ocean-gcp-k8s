@@ -160,6 +160,11 @@ variable "preemptible_percentage" {
   default     = null
   description = "Defines the desired preemptible percentage for the cluster."
 }
+variable "should_utilize_commitments" {
+  type        = bool
+  default     = null
+  description = "Enable committed use discounts utilization."
+}
 ##########################
 
 ## update_policy ##

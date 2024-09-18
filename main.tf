@@ -59,9 +59,10 @@ resource "spotinst_ocean_gke_import" "ocean" {
 
 
   strategy {
-    provisioning_model     = var.provisioning_model
-    preemptible_percentage = var.preemptible_percentage
-    draining_timeout       = var.draining_timeout
+    provisioning_model         = var.provisioning_model
+    preemptible_percentage     = var.preemptible_percentage
+    draining_timeout           = var.draining_timeout
+    should_utilize_commitments = var.should_utilize_commitments
   }
 
   update_policy {
