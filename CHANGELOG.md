@@ -3,9 +3,16 @@
 
 
 
+<a name="v0.4.0"></a>
+## [v0.4.0] (September 18, 2024)
+
+- updated controller v2 reference ([#11](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/11))
+
+
 <a name="v0.3.0"></a>
 ## [v0.3.0] (May 10, 2024)
 
+- changelog v0.3.0 ([#10](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/10))
 - Revert "Adding changelog for version v3.0"
 - Merge branch 'main' of github.com:spotinst/terraform-spotinst-ocean-gcp-k8s into main
 - Adding changelog for version v3.0
@@ -27,11 +34,6 @@
 ## [v0.2.1] (February 10, 2023)
 
 - Changelog v0.2.0 ([#4](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/4))
-
-
-<a name="v0.2.0"></a>
-## [v0.2.0] (February 10, 2023)
-
 - fix - Updated Example files
 - Correcting Repository Name
 - Update readme
@@ -60,9 +62,9 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.4.0...HEAD
+[v0.4.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.2...v0.3.0
 [v0.2.2]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.1...v0.2.2
-[v0.2.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.0...v0.2.1
-[v0.2.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.1...v0.2.0
+[v0.2.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.1...v0.2.1
 [v0.1.1]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.1.0...v0.1.1
