@@ -15,7 +15,6 @@ module "ocean-controller" {
   spotinst_account           = var.spotinst_account
   spotinst_token             = var.spotinst_token
 
-
   # Configuration.
   cluster_identifier = module.ocean-gcp-k8s.ocean_controller_id
   tolerations        = []
