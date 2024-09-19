@@ -3,9 +3,16 @@
 
 
 
+<a name="v0.5.0"></a>
+## [v0.5.0] (September 19, 2024)
+
+- Added support for `should_utilize_commitments` ([#13](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/13))
+
+
 <a name="v0.4.0"></a>
 ## [v0.4.0] (September 18, 2024)
 
+- Changelog v0.4.0 ([#12](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/12))
 - updated controller v2 reference ([#11](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/11))
 
 
@@ -62,7 +69,8 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.5.0...HEAD
+[v0.5.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.2...v0.3.0
 [v0.2.2]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.2.1...v0.2.2
