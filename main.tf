@@ -9,6 +9,18 @@ resource "spotinst_ocean_gke_import" "ocean" {
   whitelist             = var.whitelist
   root_volume_type      = var.root_volume_type
 
+  dynamic "filters" {
+      for_each = var.filters != null ? [var.filters] : []
+      content {
+        exclude_families        = filters.value.exclude_families
+        include_families        = filters.value.include_families
+        max_memory_gib          = filters.value.max_memory_gib
+        max_vcpu                = filters.value.max_vcpu
+        min_memory_gib          = filters.value.min_memory_gib
+        min_vcpu                = filters.value.min_vcpu
+      }
+    }
+
   dynamic "backend_services" {
     for_each = var.backend_service != null ? [var.backend_service] : []
     content {
@@ -44,6 +56,7 @@ resource "spotinst_ocean_gke_import" "ocean" {
     down {
       evaluation_periods        = var.evaluation_periods
       max_scale_down_percentage = var.max_scale_down_percentage
+      is_aggressive_scale_down_enabled = var.is_aggressive_scale_down_enabled
     }
     dynamic "resource_limits" {
       for_each = (
