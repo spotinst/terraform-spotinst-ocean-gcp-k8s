@@ -136,6 +136,11 @@ variable "max_scale_down_percentage" {
   default     = null
   description = "Would represent the maximum % to scale-down. Number between 1-100."
 }
+variable "is_aggressive_scale_down_enabled" {
+  type = bool
+  default = null
+  description = "When set to 'true', the Aggressive Scale Down feature is enabled"
+  }
 ## resource_limits ##
 variable "max_vcpu" {
   type        = number
@@ -219,4 +224,17 @@ variable "tasks" {
   }))
   default     = null
   description = "task object"
+}
+#filters
+variable "filters" {
+  type = object({
+    exclude_families        = list(string)
+    include_families        = list(string)
+    max_memory_gib          = number
+    max_vcpu                = number
+    min_memory_gib          = number
+    min_vcpu                = number
+  })
+  default     = null
+  description = "List of filters. The Instance types that match with all filters compose the Ocean's whitelist parameter. Cannot be configured together with whitelist/blacklist."
 }
