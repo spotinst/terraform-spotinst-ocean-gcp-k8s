@@ -116,6 +116,9 @@ resource "spotinst_ocean_gke_import" "ocean" {
       }
     }
   }
+  auto_update {
+    is_enabled=false
+  }
   lifecycle {
     ignore_changes = [
       desired_capacity
