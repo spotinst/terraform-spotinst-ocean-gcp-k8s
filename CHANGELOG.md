@@ -3,9 +3,16 @@
 
 
 
+<a name="v0.7.0"></a>
+## [v0.7.0] (January 13, 2025)
+
+- Added support for auto_update . ([#17](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/17))
+
+
 <a name="v0.6.0"></a>
 ## [v0.6.0] (November 19, 2024)
 
+- Changelog v0.6.0 ([#16](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/16))
 - added `is_aggressive_scale_down_enabled` and `filters` fields ([#15](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/15))
 
 
@@ -76,7 +83,8 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.7.0...HEAD
+[v0.7.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.6.0...v0.7.0
 [v0.6.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.5.0...v0.6.0
 [v0.5.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.3.0...v0.4.0
