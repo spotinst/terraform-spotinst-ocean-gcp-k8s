@@ -55,6 +55,7 @@ module "ocean-gcp-k8s" {
   # Credentials.
   cluster_name                      = var.cluster_name
   location                          = var.location
+  is_enabled                        = var.is_enabled
 }
 ```
 

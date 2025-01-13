@@ -4,7 +4,7 @@ terraform {
   required_providers {
     spotinst = {
       source  = "spotinst/spotinst"
-      version = ">= 1.193.0"
+      version = ">= 1.206.0"
     }
   }
 }
