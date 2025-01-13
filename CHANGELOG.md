@@ -1,7 +1,10 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+<a name="v0.7.0"></a>
+## [v0.7.0] (January 13, 2025)
 
+- Added support for `auto_update` object. ([#616](https://github.com/spotinst/terraform-provider-spotinst/pull/616))
 
 <a name="v0.6.0"></a>
 ## [v0.6.0] (November 19, 2024)
