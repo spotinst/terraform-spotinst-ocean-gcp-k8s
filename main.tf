@@ -117,7 +117,7 @@ resource "spotinst_ocean_gke_import" "ocean" {
     }
   }
   auto_update {
-    is_enabled = var.is_enabled
+    is_enabled = var.autoupdate_is_enabled
   }
   lifecycle {
     ignore_changes = [
