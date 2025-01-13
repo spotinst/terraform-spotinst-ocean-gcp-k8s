@@ -238,3 +238,9 @@ variable "filters" {
   default     = null
   description = "List of filters. The Instance types that match with all filters compose the Ocean's whitelist parameter. Cannot be configured together with whitelist/blacklist."
 }
+# auto_update
+variable "autoupdate_is_enabled" {
+  type        = bool
+  default     = true
+  description = "Enable the Ocean Kubernetes AutoUpdate."
+}

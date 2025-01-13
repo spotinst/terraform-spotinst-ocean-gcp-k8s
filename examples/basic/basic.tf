@@ -2,8 +2,9 @@
 module "ocean-gcp-k8s" {
   source = "spotinst/ocean-gcp-k8s/spotinst"
 
-  cluster_name = var.cluster_name
-  location     = var.location
+  cluster_name            = var.cluster_name
+  location                = var.location
+  autoupdate_is_enabled   = var.autoupdate_is_enabled
 }
 
 ### Deploy Ocean Controller Pod into Cluster ###
