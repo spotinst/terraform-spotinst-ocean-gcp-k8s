@@ -170,6 +170,11 @@ variable "should_utilize_commitments" {
   default     = null
   description = "Enable committed use discounts utilization."
 }
+variable "scaling_orientation" {
+  type        = string
+  default     = null
+  description = "Set this value to control the approach that Ocean takes when launching nodes"
+}
 ##########################
 
 ## update_policy ##

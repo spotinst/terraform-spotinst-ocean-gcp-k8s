@@ -76,6 +76,7 @@ resource "spotinst_ocean_gke_import" "ocean" {
     preemptible_percentage     = var.preemptible_percentage
     draining_timeout           = var.draining_timeout
     should_utilize_commitments = var.should_utilize_commitments
+    scaling_orientation        = var.scaling_orientation
   }
 
   update_policy {
