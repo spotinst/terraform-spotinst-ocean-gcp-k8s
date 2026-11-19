@@ -3,9 +3,16 @@
 
 
 
+<a name="v0.9.0"></a>
+## [v0.9.0] (November 19, 2026)
+
+- feat(ocean GCP/Cluster): Added support for DynamicVolumeSize object ([#21](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/21))
+
+
 <a name="v0.8.0"></a>
 ## [v0.8.0] (March 27, 2025)
 
+- changelog v0.8.0 ([#20](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/20))
 - added `scaling_orientation` field in `strategy` object ([#19](https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/issues/19))
 
 
@@ -90,7 +97,8 @@
 - chore: initial commit
 
 
-[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.9.0...HEAD
+[v0.9.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.8.0...v0.9.0
 [v0.8.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.7.0...v0.8.0
 [v0.7.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.6.0...v0.7.0
 [v0.6.0]: https://github.com/spotinst/terraform-spotinst-ocean-gcp-k8s/compare/v0.5.0...v0.6.0
