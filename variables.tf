@@ -42,6 +42,16 @@ variable "root_volume_type" {
   type        = string
   description = "The root volume disk type"
 }
+
+variable "dynamic_volume_size" {
+  type = object({
+    base_size              = number
+    resource               = string
+    size_per_resource_unit = number
+  })
+  default = null
+  description = "Dynamic volume size configuration for the Cluster"
+}
 #################
 
 ## backend_service ##
